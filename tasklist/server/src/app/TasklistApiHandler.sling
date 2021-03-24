@@ -11,18 +11,38 @@ model TaskRequest
 
 GET "/task"
 {
+    var tasks = assert getDatabase().getTasks()
+    sendOk tasks
 }
 
 POST "/task"
 {
-
+    var requestData = assert TaskRequest.forJsonString(req.getBodyString()):
+        sendError "invalidRequest"
+    var task = new TasklistDatabase.Task()
+    task.setName(requestData.getName())
+    task.setDescription(requestData.getDescription())
+    assert getDatabase().addTask(task):
+        sendError "failedToSaveTask"
+    sendOk
 }
 PUT "/task/:id"
 {
+    var requestData = assert TaskRequest.forJsonString(req.getBodyString()):
+        sendError "invalidRequest"
+    var task = new TasklistDatabase.Task()
+    task.setName(requestData.getName())
+    task.setDescription(requestData.getDescription())
+    assert getDatabase().updateTask(vars.getString("id"), task):
+        sendError "failedToUpdateTask"
+    sendOk
 }
 
 DELETE "/task/:id"
 {
+    assert getDatabase().deleteTask(vars.getString("id")):
+        sendError "failedToDeleteTask"
+    sendOk
 }
 
 var db as TasklistDatabase
