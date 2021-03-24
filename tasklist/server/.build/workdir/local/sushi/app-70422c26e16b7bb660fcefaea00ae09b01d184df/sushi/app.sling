@@ -1,3 +1,12 @@
+class name app.TasklistConfig header public
+{
+	import jk.lang
+	import jk.env
+	import jk.http.server.cors
+	ctor
+	func getAllowedOrigins as array
+	func getCorsUtil as jk.http.server.cors.HTTPServerCORSUtil
+}
 class name app.TasklistDatabase header public
 {
 	import jk.lang
@@ -45,4 +54,36 @@ class name app.TasklistDatabase header public
 	func close
 	func getDb as jk.mysql.MySQLDatabase #getterMethod
 	func setDb(v as jk.mysql.MySQLDatabase) as app.TasklistDatabase #setterMethod
+}
+class name app.TasklistApiHandler header extends jk.http.worker.HTTPRPCRouter public
+{
+	import jk.lang
+	import jk.http.worker
+	import jk.http.client
+	ctor
+	class name TaskRequest header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setName(value as string) as app.TasklistApiHandler.TaskRequest
+		func getName as string
+		func setDescription(value as string) as app.TasklistApiHandler.TaskRequest
+		func getDescription as string
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as app.TasklistApiHandler.TaskRequest
+		func forJsonObject(o as object) static as app.TasklistApiHandler.TaskRequest
+	}
+	func initRoutes override
+}
+class name app.TasklistApiServer header extends jk.server.web.WebServer public
+{
+	import jk.lang
+	import jk.http.server
+	import jk.server.web
+	ctor
+	func initializeServer(server as jk.http.server.HTTPServer) override as bool
 }

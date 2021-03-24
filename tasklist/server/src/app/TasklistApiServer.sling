@@ -1,0 +1,13 @@
+import jk.http.server
+import jk.server.web
+
+class is WebServer:
+
+func initializeServer(server as HTTPServer) override as bool
+{
+    assert base.initializeServer(server)
+    return true
+}
+
+main:
+    return new this().setWorker(typeinfo TasklistApiHandler).executeMain(args)
