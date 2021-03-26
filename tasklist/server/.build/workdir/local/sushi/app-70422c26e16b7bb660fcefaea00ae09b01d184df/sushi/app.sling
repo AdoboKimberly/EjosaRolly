@@ -77,6 +77,8 @@ class name app.TasklistApiHandler header extends jk.http.worker.HTTPRPCRouter pu
 		func forJsonString(o as string) static as app.TasklistApiHandler.TaskRequest
 		func forJsonObject(o as object) static as app.TasklistApiHandler.TaskRequest
 	}
+	func getDatabase as app.TasklistDatabase
+	func postProcess(req as jk.http.worker.HTTPWorkerRequest, resp as jk.http.worker.HTTPWorkerResponse) override
 	func initRoutes override
 }
 class name app.TasklistApiServer header extends jk.server.web.WebServer public
@@ -86,4 +88,5 @@ class name app.TasklistApiServer header extends jk.server.web.WebServer public
 	import jk.server.web
 	ctor
 	func initializeServer(server as jk.http.server.HTTPServer) override as bool
+	func initializeApplication override as bool
 }

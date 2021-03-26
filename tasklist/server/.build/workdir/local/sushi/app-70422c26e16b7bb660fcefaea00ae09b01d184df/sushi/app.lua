@@ -23,7 +23,8 @@ end
 function app.TasklistConfig:getAllowedOrigins()
 	do return {
 		"http://localhost:8080",
-		"http://localhost:8081"
+		"http://localhost:8081",
+		"http://ec2-54-255-215-230.ap-southeast-1.compute.amazonaws.com:30710"
 	} end
 end
 
@@ -90,7 +91,7 @@ function app.TasklistDatabase.Task:_init()
 	self._name = nil
 	self._description = nil
 	self._timeStampAdded = nil
-	self._TimeStampLastUpdated = nil
+	self._timeStampLastUpdated = nil
 end
 
 function app.TasklistDatabase.Task:_construct0()
@@ -148,16 +149,16 @@ function app.TasklistDatabase.Task:setTimeStampLastUpdatedValue(value)
 end
 
 function app.TasklistDatabase.Task:getTimeStampLastUpdatedValue()
-	do return _g.jk.lang.LongInteger:asLong(self._TimeStampLastUpdated) end
+	do return _g.jk.lang.LongInteger:asLong(self._timeStampLastUpdated) end
 end
 
 function app.TasklistDatabase.Task:setTimeStampLastUpdated(value)
-	self._TimeStampLastUpdated = value
+	self._timeStampLastUpdated = value
 	do return self end
 end
 
 function app.TasklistDatabase.Task:getTimeStampLastUpdated()
-	do return self._TimeStampLastUpdated end
+	do return self._timeStampLastUpdated end
 end
 
 function app.TasklistDatabase.Task:toJsonObject()
@@ -174,8 +175,8 @@ function app.TasklistDatabase.Task:toJsonObject()
 	if self._timeStampAdded ~= nil then
 		do v:setObject("timeStampAdded", self:asJsonValue(self._timeStampAdded)) end
 	end
-	if self._TimeStampLastUpdated ~= nil then
-		do v:setObject("TimeStampLastUpdated", self:asJsonValue(self._TimeStampLastUpdated)) end
+	if self._timeStampLastUpdated ~= nil then
+		do v:setObject("timeStampLastUpdated", self:asJsonValue(self._timeStampLastUpdated)) end
 	end
 	do return v end
 end
@@ -191,8 +192,8 @@ function app.TasklistDatabase.Task:fromJsonObject(o)
 	if v:get("timeStampAdded") ~= nil then
 		self._timeStampAdded = _g.jk.lang.LongInteger:asObject(v:getLongInteger("timeStampAdded", 0))
 	end
-	if v:get("TimeStampLastUpdated") ~= nil then
-		self._TimeStampLastUpdated = _g.jk.lang.LongInteger:asObject(v:getLongInteger("TimeStampLastUpdated", 0))
+	if v:get("timeStampLastUpdated") ~= nil then
+		self._timeStampLastUpdated = _g.jk.lang.LongInteger:asObject(v:getLongInteger("timeStampLastUpdated", 0))
 	end
 	do return true end
 end
@@ -227,10 +228,10 @@ end
 
 function app.TasklistDatabase:forContext(ctx)
 	local cstr = _g.jk.env.EnvironmentVariable:get("TASK_DATABASE")
-	do _g.jk.log.Log:debug(ctx, "Opening database connection: '" .. _g.jk.lang.String:safeString(cstr) .. "'") end
+	do _g.jk.log.Log:debug(ctx, "Opening database connection:'" .. _g.jk.lang.String:safeString(cstr) .. "'") end
 	self.db = _g.jk.mysql.MySQLDatabase:forConnectionStringSync(ctx, cstr)
 	if not (self.db ~= nil) then
-		do _g.jk.lang.Error:throw("failedToConnectToDatabase", cstr) end
+		do _g.jk.lang.Error:throw("faildToConnectToDatabase", cstr) end
 	end
 	do
 		local v = _g.app.TasklistDatabase._construct0(_g.app.TasklistDatabase._create())
@@ -254,8 +255,10 @@ end
 function app.TasklistDatabase:updateTables()
 	local task = _g.jk.sql.SQLTableInfo:forName(_g.app.TasklistDatabase.TASK)
 	do task:addStringKeyColumn("id") end
-	do task:addStringKeyColumn("name") end
-	do task:addStringKeyColumn("description") end
+	do task:addStringColumn("name") end
+	do task:addStringColumn("description") end
+	do task:addLongColumn("timeStampAdded") end
+	do task:addLongColumn("timeStampAddedUpdated") end
 	do self:updateTable(task) end
 end
 
@@ -347,6 +350,8 @@ function app.TasklistApiHandler:_init()
 	self._isClassInstance = true
 	self._qualifiedClassName = self._qualifiedClassName or 'app.TasklistApiHandler'
 	self['_isType.app.TasklistApiHandler'] = true
+	self.db = nil
+	self.cors = _g.app.TasklistConfig:getCorsUtil()
 end
 
 function app.TasklistApiHandler:_construct0()
@@ -448,15 +453,67 @@ function app.TasklistApiHandler.TaskRequest:forJsonObject(o)
 	do return v end
 end
 
+function app.TasklistApiHandler:getDatabase()
+	if not (self.db ~= nil) then
+		self.db = _g.app.TasklistDatabase:forContext(self:getCtx())
+		do self.db:updateTables() end
+	end
+	do return self.db end
+end
+
+function app.TasklistApiHandler:postProcess(req, resp)
+	do self.cors:handleWorkerRequest(req, resp) end
+end
+
 function app.TasklistApiHandler:initRoutes()
 	do _g.jk.http.worker.HTTPRPCRouter.initRoutes(self) end
 	do self:addRoute("GET", "/task", function(req, resp, vars)
+		local tasks = self:getDatabase():getTasks()
+		if not (tasks ~= nil) then
+			do return end
+		end
+		do self:setOkResponse(resp, tasks) end
 	end) end
 	do self:addRoute("POST", "/task", function(req, resp, vars)
+		local requestData = _g.app.TasklistApiHandler.TaskRequest:forJsonString(req:getBodyString())
+		if not (requestData ~= nil) then
+			do self:setErrorResponse(resp, "invalidRequest", "500") end
+			do return end
+		end
+		do
+			local task = _g.app.TasklistDatabase.Task._construct0(_g.app.TasklistDatabase.Task._create())
+			do task:setName(requestData:getName()) end
+			do task:setDescription(requestData:getDescription()) end
+			if not (self:getDatabase():addTask(task) ~= nil) then
+				do self:setErrorResponse(resp, "failedToSaveTask", "500") end
+				do return end
+			end
+			do self:setOkResponse(resp, nil) end
+		end
 	end) end
 	do self:addRoute("PUT", "/task/:id", function(req, resp, vars)
+		local requestData = _g.app.TasklistApiHandler.TaskRequest:forJsonString(req:getBodyString())
+		if not (requestData ~= nil) then
+			do self:setErrorResponse(resp, "invalidRequest", "500") end
+			do return end
+		end
+		do
+			local task = _g.app.TasklistDatabase.Task._construct0(_g.app.TasklistDatabase.Task._create())
+			do task:setName(requestData:getName()) end
+			do task:setDescription(requestData:getDescription()) end
+			if not self:getDatabase():updateTask(vars:getString("id", nil), task) then
+				do self:setErrorResponse(resp, "failedToUpdateTask", "500") end
+				do return end
+			end
+			do self:setOkResponse(resp, nil) end
+		end
 	end) end
 	do self:addRoute("DELETE", "/task/:id", function(req, resp, vars)
+		if not self:getDatabase():deleteTask(vars:getString("id", nil)) then
+			do self:setErrorResponse(resp, "failedToDeleteTask", "500") end
+			do return end
+		end
+		do self:setOkResponse(resp, nil) end
 	end) end
 end
 
@@ -487,7 +544,22 @@ function app.TasklistApiServer:initializeServer(server)
 	if not _g.jk.server.web.WebServer.initializeServer(self, server) then
 		do return false end
 	end
+	do server:setCreateOptionsResponseHandler(function(req)
+		do return _g.app.TasklistConfig:getCorsUtil():handlePreflightRequest(req) end
+	end) end
 	do return true end
+end
+
+function app.TasklistApiServer:initializeApplication()
+	if not _g.jk.server.web.WebServer.initializeApplication(self) then
+		do return false end
+	end
+	do
+		local db = _g.app.TasklistDatabase:forContext(self.ctx)
+		do db:updateTables() end
+		do db:close() end
+		do return true end
+	end
 end
 
 function app.TasklistApiServer:_main(args)

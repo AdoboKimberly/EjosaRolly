@@ -1,0 +1,24 @@
+[2021-03-23 06:42:26.136] [exthost] [info] extension host started
+[2021-03-23 06:42:26.278] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"extensionId":{"value":"vscode.debug-auto-launch","_lower":"vscode.debug-auto-launch"},"activationEvent":"*"}
+[2021-03-23 06:42:26.278] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/rolly/.vscode-server/bin/2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/extensions/debug-auto-launch/dist/extension
+[2021-03-23 06:42:26.285] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"extensionId":{"value":"vscode.github","_lower":"vscode.github"},"activationEvent":"*"}
+[2021-03-23 06:42:26.285] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/rolly/.vscode-server/bin/2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/extensions/git/dist/main
+[2021-03-23 06:42:27.712] [exthost] [info] ExtensionService#_doActivateExtension vscode.github {"startup":true,"extensionId":{"value":"vscode.github","_lower":"vscode.github"},"activationEvent":"*"}
+[2021-03-23 06:42:27.712] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/rolly/.vscode-server/bin/2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/extensions/github/dist/extension.js
+[2021-03-23 06:42:27.930] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":false,"extensionId":{"value":"vscode.emmet","_lower":"vscode.emmet"},"activationEvent":"onStartupFinished"}
+[2021-03-23 06:42:27.930] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/rolly/.vscode-server/bin/2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/extensions/emmet/dist/node/emmetNodeMain
+[2021-03-23 06:42:27.955] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":false,"extensionId":{"value":"vscode.merge-conflict","_lower":"vscode.merge-conflict"},"activationEvent":"onStartupFinished"}
+[2021-03-23 06:42:27.955] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/rolly/.vscode-server/bin/2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/extensions/merge-conflict/dist/mergeConflictMain
+[2021-03-23 06:42:27.962] [exthost] [info] ExtensionService#_doActivateExtension vscode.testing-editor-contributions {"startup":false,"extensionId":{"value":"vscode.testing-editor-contributions","_lower":"vscode.testing-editor-contributions"},"activationEvent":"onStartupFinished"}
+[2021-03-23 06:42:27.962] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/rolly/.vscode-server/bin/2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/extensions/testing-editor-contributions/dist/extension.js
+[2021-03-23 06:42:27.963] [exthost] [info] eager extensions activated
+[2021-03-23 06:42:27.988] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.js-debug {"startup":false,"extensionId":{"value":"ms-vscode.js-debug","_lower":"ms-vscode.js-debug"},"activationEvent":"onCommand:extension.js-debug.clearAutoAttachVariables"}
+[2021-03-23 06:42:27.989] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/rolly/.vscode-server/bin/2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/extensions/ms-vscode.js-debug/src/extension.js
+[2021-03-23 07:56:19.180] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.node-debug2 {"startup":false,"extensionId":{"value":"ms-vscode.node-debug","_lower":"ms-vscode.node-debug"},"activationEvent":"onDebugInitialConfigurations"}
+[2021-03-23 07:56:19.181] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/rolly/.vscode-server/bin/2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/extensions/ms-vscode.node-debug2/out/src/extension
+[2021-03-23 07:56:19.261] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.node-debug {"startup":false,"extensionId":{"value":"ms-vscode.node-debug","_lower":"ms-vscode.node-debug"},"activationEvent":"onDebugInitialConfigurations"}
+[2021-03-23 07:56:19.261] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/rolly/.vscode-server/bin/2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/extensions/ms-vscode.node-debug/dist/extension.js
+[2021-03-23 07:56:21.594] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-server-ready {"startup":false,"extensionId":{"value":"vscode.debug-server-ready","_lower":"vscode.debug-server-ready"},"activationEvent":"onDebugResolve"}
+[2021-03-23 07:56:21.594] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/rolly/.vscode-server/bin/2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/extensions/debug-server-ready/dist/extension
+[2021-03-23 10:41:48.489] [exthost] [info] extension host terminating: received terminate message from renderer
+[2021-03-23 10:41:49.497] [exthost] [info] exiting with code 0

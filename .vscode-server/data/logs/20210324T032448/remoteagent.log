@@ -1,0 +1,52 @@
+[2021-03-24 03:24:48.811] [remoteagent] [info] 
+
+*
+* Visual Studio Code Server
+*
+* Reminder: You may only use this software with Visual Studio family products,
+* as described in the license https://aka.ms/vscode-remote/license
+*
+
+
+[2021-03-24 03:24:48.811] [remoteagent] [info] Extension host agent started.
+[2021-03-24 03:24:49.192] [remoteagent] [info] [127.0.0.1][c25644d7][ManagementConnection] New connection established.
+[2021-03-24 03:24:49.354] [remoteagent] [info] [127.0.0.1][287806b8][ExtensionHostConnection] New connection established.
+[2021-03-24 03:24:49.456] [remoteagent] [info] [127.0.0.1][287806b8][ExtensionHostConnection] <3057> Launched Extension Host Process.
+[2021-03-24 03:52:17.303] [remoteagent] [info] [127.0.0.1][c25644d7][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2021-03-24 03:52:18.320] [remoteagent] [info] [127.0.0.1][287806b8][ExtensionHostConnection] <3057> Extension Host Process exited with code: 0, signal: null.
+[2021-03-24 03:52:18.321] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2021-03-24 03:52:24.756] [remoteagent] [info] Got delay-shutdown request while in shutdown timeout, delaying
+[2021-03-24 03:52:24.756] [remoteagent] [info] Cancelling previous shutdown timeout
+[2021-03-24 03:52:25.072] [remoteagent] [info] [127.0.0.1][51ae3f69][ManagementConnection] New connection established.
+[2021-03-24 03:52:25.185] [remoteagent] [info] [127.0.0.1][20c0d45a][ExtensionHostConnection] New connection established.
+[2021-03-24 03:52:25.188] [remoteagent] [info] [127.0.0.1][20c0d45a][ExtensionHostConnection] <39625> Launched Extension Host Process.
+[2021-03-24 03:57:24.757] [remoteagent] [info] New EH opened, aborting shutdown
+[2021-03-24 06:47:06.115] [remoteagent] [info] Installing extension: knisterpeter.vscode-github
+[2021-03-24 06:47:06.944] [remoteagent] [info] Downloaded extension: knisterpeter.vscode-github undefined
+[2021-03-24 06:47:08.474] [remoteagent] [info] Extracted extension to /home/rolly/.vscode-server/extensions/.knisterpeter.vscode-github-0.30.5: knisterpeter.vscode-github
+[2021-03-24 06:47:08.474] [remoteagent] [info] Renamed to /home/rolly/.vscode-server/extensions/knisterpeter.vscode-github-0.30.5
+[2021-03-24 06:47:08.477] [remoteagent] [info] Installation completed. knisterpeter.vscode-github
+[2021-03-24 06:47:08.485] [remoteagent] [info] Extensions installed successfully: knisterpeter.vscode-github
+[2021-03-24 06:47:44.816] [remoteagent] [info] [127.0.0.1][51ae3f69][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2021-03-24 06:47:45.855] [remoteagent] [info] [127.0.0.1][20c0d45a][ExtensionHostConnection] <39625> Extension Host Process exited with code: 0, signal: null.
+[2021-03-24 06:47:45.855] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2021-03-24 06:47:50.028] [remoteagent] [info] Got delay-shutdown request while in shutdown timeout, delaying
+[2021-03-24 06:47:50.028] [remoteagent] [info] Cancelling previous shutdown timeout
+[2021-03-24 06:47:50.849] [remoteagent] [info] [127.0.0.1][65f86393][ManagementConnection] New connection established.
+[2021-03-24 06:47:51.124] [remoteagent] [info] [127.0.0.1][ce025e92][ExtensionHostConnection] New connection established.
+[2021-03-24 06:47:51.131] [remoteagent] [info] [127.0.0.1][ce025e92][ExtensionHostConnection] <422033> Launched Extension Host Process.
+[2021-03-24 06:48:00.625] [remoteagent] [info] [127.0.0.1][65f86393][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2021-03-24 06:48:01.650] [remoteagent] [info] [127.0.0.1][ce025e92][ExtensionHostConnection] <422033> Extension Host Process exited with code: 0, signal: null.
+[2021-03-24 06:48:01.651] [remoteagent] [info] Cancelling previous shutdown timeout
+[2021-03-24 06:48:01.651] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2021-03-24 06:48:05.521] [remoteagent] [info] Got delay-shutdown request while in shutdown timeout, delaying
+[2021-03-24 06:48:05.521] [remoteagent] [info] Cancelling previous shutdown timeout
+[2021-03-24 06:48:05.860] [remoteagent] [info] [127.0.0.1][1bcabb13][ManagementConnection] New connection established.
+[2021-03-24 06:48:06.076] [remoteagent] [info] [127.0.0.1][2a11e98c][ExtensionHostConnection] New connection established.
+[2021-03-24 06:48:06.080] [remoteagent] [info] [127.0.0.1][2a11e98c][ExtensionHostConnection] <422603> Launched Extension Host Process.
+[2021-03-24 06:48:06.084] [remoteagent] [info] Terminal layout retrieved: []
+[2021-03-24 06:53:05.523] [remoteagent] [info] New EH opened, aborting shutdown
+[2021-03-24 11:30:36.534] [remoteagent] [info] [127.0.0.1][1bcabb13][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2021-03-24 11:30:38.504] [remoteagent] [info] [127.0.0.1][2a11e98c][ExtensionHostConnection] <422603> Extension Host Process exited with code: 0, signal: null.
+[2021-03-24 11:30:38.504] [remoteagent] [info] Last EH closed, waiting before shutting down
+[2021-03-24 11:35:38.506] [remoteagent] [info] Last EH closed, shutting down
