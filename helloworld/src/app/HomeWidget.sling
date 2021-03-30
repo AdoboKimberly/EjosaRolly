@@ -1,6 +1,6 @@
 import jk.widget.common
 
-class is TitleWidget #widget:
+class is TitledWidget #widget:
 
 ui LayerWidget
 {
