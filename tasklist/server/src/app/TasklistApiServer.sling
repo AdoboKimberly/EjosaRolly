@@ -23,6 +23,4 @@ func initializeApplication override as bool
 
 main:
     return new this().setWorker(typeinfo TasklistApiHandler).executeMain(args)
-
-
-
+    

@@ -52,7 +52,6 @@ func updateTables
     task.addLongColumn("timeStampAdded")
     task.addLongColumn("timeStampAddedUpdated")
     updateTable(task)
-
 }
 
 func addTask(task as Task) as Task
@@ -62,7 +61,6 @@ func addTask(task as Task) as Task
     task.setTimeStampAddedValue(SystemClock.asUTCSeconds() )
     assert db.executeSync(db.prepareInsertStatementSync(TASK, task.toDynamicMap()))
     return task
-
 }
 
 func updateTask(id as string, task as Task) as bool
@@ -107,5 +105,4 @@ func close
     if db:
         db.closeSync()
     db = null
-
 }
