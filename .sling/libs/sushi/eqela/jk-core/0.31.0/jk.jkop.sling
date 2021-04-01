@@ -1,6 +1,0 @@
-class name jk.jkop.Jkop header public
-{
-	import jk.lang
-	ctor
-	func getVersion static as string
-}

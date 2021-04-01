@@ -1,5 +1,0 @@
-class name jk.stomp.STOMPClient header public
-{
-	import jk.lang
-	ctor
-}
